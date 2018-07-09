@@ -1,10 +1,12 @@
 import React from 'react'
 import {View, Text, TextInput, Button} from 'react-native';
+import ZoneSelection from "./splash/ZoneSelection";
 
 const STATES = {
     LOGIN_SELECTION: 0,
     USE_EXISTING_ACCOUNT: 1,
-    REGISTER_NEW_ACCOUNT: 2
+    REGISTER_NEW_ACCOUNT: 2,
+    ZONE_SELECTION: 3
 }
 
 export default class Login extends React.Component{
@@ -21,6 +23,8 @@ export default class Login extends React.Component{
                 return this.useExistingAccount();
             case STATES.REGISTER_NEW_ACCOUNT:
                 return this.registerNewAccount();
+            case STATES.ZONE_SELECTION:
+                return <ZoneSelection/>
         }
     }
 
@@ -38,7 +42,7 @@ export default class Login extends React.Component{
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>Select existing account</Text>
-                <Button title={"Button"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
+                <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
             </View>
         );
     }
@@ -57,7 +61,10 @@ export default class Login extends React.Component{
                     onChangeText={(text) => this.setState({text})}
                     value={"Password"}
                 />
-                <Button color={styles.text.color} title={"Ok"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
+                <View style={{flexDirection: "row"}}>
+                    <Button color={styles.text.color} title={"Ok"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
+                    <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
+                </View>
             </View>
         );
     }
@@ -82,6 +89,8 @@ const styles = {
     },
 
     text: {
-        color: "#66FCF1"
+        color: "#66FCF1",
+        fontSize: 20,
+        margin: 5
     }
 }
