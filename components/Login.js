@@ -2,9 +2,10 @@ import React from 'react'
 import {View, Text, TextInput, Button} from 'react-native';
 import ZoneSelection from "./ZoneSelection";
 import ExistingAccount from "./ExistingAccount";
-
+var password = require('../assets/jsonFiles/Password').password;
 
 const STATES = {
+    LOGIN_SCREEN: -1,
     LOGIN_SELECTION: 0,
     USE_EXISTING_ACCOUNT: 1,
     REGISTER_NEW_ACCOUNT: 2,
@@ -20,13 +21,15 @@ export default class Login extends React.Component{
     }
 
     state = {
-        current: STATES.LOGIN_SELECTION,
+        current: STATES.LOGIN_SCREEN,
         username: "",
         password: "",
     };
 
     render(){
         switch(this.state.current){
+            case STATES.LOGIN_SCREEN:
+                return this.loginScreen();
             case STATES.LOGIN_SELECTION:
                 return this.loginSelection();
             case STATES.USE_EXISTING_ACCOUNT:
@@ -36,6 +39,26 @@ export default class Login extends React.Component{
             case STATES.ZONE_SELECTION:
                 return <ZoneSelection username={this.state.username} password={this.state.password} goBack={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
         }
+    }
+
+    loginScreen(){
+        let parent = this;
+        return(
+            <View style={styles.container}>
+                <Text style={styles.darkText}>ENTER BBF MASTER PASSWORD</Text>
+                <TextInput
+                    style={styles.textInput}
+                    onChangeText={(text) => this.setState({masterPassword: text})}
+                    value={""}
+                    secureTextEntry={true}
+                />
+                <Button color={styles.text.color} title={"Ok"} onPress={function(){
+                    if(parent.state.masterPassword === password){
+                        parent.setState({current: STATES.LOGIN_SELECTION});
+                    }
+                }}/>
+            </View>
+        )
     }
 
     loginSelection(){
@@ -74,6 +97,7 @@ export default class Login extends React.Component{
                     style={styles.textInput}
                     onChangeText={(text) => this.setState({password: text})}
                     value={"Password"}
+                    secureTextEntry={true}
                 />
                 <View style={{flexDirection: "row"}}>
                     <Button color={styles.text.color} title={"Ok"} onPress={() => this.setState({current: STATES.ZONE_SELECTION})}/>
@@ -100,7 +124,7 @@ const styles = {
         height: 40,
         margin: 5,
         padding: 5,
-        color: "#66FCF1"
+        color: "#45a29e"
     },
 
     text: {
