@@ -35,24 +35,24 @@ export class NotificationsManagement{
         console.log("Got token ! ", token);
 
         // POST the token to your backend server from where you can retrieve it to send push notifications.
+
+        let body = {
+            token: token,
+            positions: props.positions,
+            user: {username: props.username, password: props.password},
+            zone: props.zone
+        };
+
         return fetch(PUSH_ENDPOINT+"?Token="+token, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                token:  token,
-                positions: props.positions,
-                user: {
-                    username: props.username,
-                    password: props.password
-                },
-                zone: props.zone
-            }),
+            body: JSON.stringify(body),
         })
-            .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then(response => response.json())
+            .then(data => console.log(data))
             .done();
     }
 }
