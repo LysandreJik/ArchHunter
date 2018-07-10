@@ -13,6 +13,12 @@ const STATES = {
 
 export default class Login extends React.Component{
 
+    constructor(props){
+        super(props);
+
+        this.selectZone = this.selectZone.bind(this);
+    }
+
     state = {
         current: STATES.LOGIN_SELECTION,
         username: "",
@@ -42,11 +48,15 @@ export default class Login extends React.Component{
         );
     }
 
+    selectZone(username, password){
+        this.setState({username: username, password: password, current: STATES.ZONE_SELECTION});
+    }
+
     useExistingAccount(){
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>Select existing account</Text>
-                <ExistingAccount/>
+                <ExistingAccount selectZone={this.selectZone}/>
                 <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
             </View>
         );
