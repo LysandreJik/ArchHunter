@@ -1,8 +1,8 @@
 import React from 'react'
 import {ScrollView, View, Text, Button} from 'react-native';
-import {NotificationsManagement} from "../../usermanagement/NotificationsManagement";
+import {NotificationsManagement} from "../usermanagement/NotificationsManagement";
 
-var AreasInformation = require('../../assets/jsonFiles/AreasInformation');
+var AreasInformation = require('../assets/jsonFiles/AreasInformation');
 
 export default class ZoneSelection extends React.Component{
 
@@ -57,4 +57,4 @@ const styles = {
     scrollView: {
 
     }
-}
+};

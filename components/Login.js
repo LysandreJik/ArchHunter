@@ -1,13 +1,14 @@
 import React from 'react'
 import {View, Text, TextInput, Button} from 'react-native';
-import ZoneSelection from "./splash/ZoneSelection";
+import ZoneSelection from "./ZoneSelection";
+
 
 const STATES = {
     LOGIN_SELECTION: 0,
     USE_EXISTING_ACCOUNT: 1,
     REGISTER_NEW_ACCOUNT: 2,
     ZONE_SELECTION: 3
-}
+};
 
 export default class Login extends React.Component{
 
