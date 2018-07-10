@@ -23,6 +23,7 @@ export default class ZoneSelection extends React.Component{
                         return <Button key={index} title={key} onPress={() => parent.startHunt(key)}/>
                     })}
                 </ScrollView>
+                <Button color={styles.text.color} title={"Go back"} onPress={this.props.goBack}/>
             </View>
         )
     }
