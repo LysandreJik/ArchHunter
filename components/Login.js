@@ -12,7 +12,9 @@ const STATES = {
 export default class Login extends React.Component{
 
     state = {
-        current: STATES.LOGIN_SELECTION
+        current: STATES.LOGIN_SELECTION,
+        username: "",
+        password: "",
     };
 
     render(){
@@ -24,7 +26,7 @@ export default class Login extends React.Component{
             case STATES.REGISTER_NEW_ACCOUNT:
                 return this.registerNewAccount();
             case STATES.ZONE_SELECTION:
-                return <ZoneSelection/>
+                return <ZoneSelection username={this.state.username} password={this.state.password}/>
         }
     }
 
@@ -42,7 +44,7 @@ export default class Login extends React.Component{
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>Select existing account</Text>
-                <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
+                <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
             </View>
         );
     }
@@ -53,16 +55,16 @@ export default class Login extends React.Component{
                 <Text style={styles.text}>Register a new account</Text>
                 <TextInput
                     style={styles.textInput}
-                    onChangeText={(text) => this.setState({text})}
+                    onChangeText={(text) => this.setState({username: text})}
                     value={"Account name"}
                 />
                 <TextInput
                     style={styles.textInput}
-                    onChangeText={(text) => this.setState({text})}
+                    onChangeText={(text) => this.setState({password: text})}
                     value={"Password"}
                 />
                 <View style={{flexDirection: "row"}}>
-                    <Button color={styles.text.color} title={"Ok"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
+                    <Button color={styles.text.color} title={"Ok"} onPress={() => this.setState({current: STATES.ZONE_SELECTION})}/>
                     <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
                 </View>
             </View>
