@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, TextInput, Button} from 'react-native';
 import ZoneSelection from "./ZoneSelection";
+import ExistingAccount from "./ExistingAccount";
 
 
 const STATES = {
@@ -27,7 +28,7 @@ export default class Login extends React.Component{
             case STATES.REGISTER_NEW_ACCOUNT:
                 return this.registerNewAccount();
             case STATES.ZONE_SELECTION:
-                return <ZoneSelection username={this.state.username} password={this.state.password}/>
+                return <ZoneSelection username={this.state.username} password={this.state.password} goBack={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
         }
     }
 
@@ -45,6 +46,7 @@ export default class Login extends React.Component{
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>Select existing account</Text>
+                <ExistingAccount/>
                 <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
             </View>
         );
