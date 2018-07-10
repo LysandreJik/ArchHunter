@@ -87,7 +87,7 @@ const styles = {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#5b5b5b',
+        backgroundColor: '#1F2833',
         flexDirection: 'row'
     },
 

@@ -15,12 +15,10 @@ export default class ZoneSelection extends React.Component{
         let parent = this;
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>
-                    Select a zone
-                </Text>
+                <Text style={styles.darkText}>SELECT AN AREA</Text>
                 <ScrollView>
                     {Object.keys(AreasInformation).map(function(key, index){
-                        return <Button key={index} title={key} onPress={() => parent.startHunt(key)}/>
+                        return <Button color={styles.text.color} key={index} title={key} onPress={() => parent.startHunt(key)}/>
                     })}
                 </ScrollView>
                 <Button color={styles.text.color} title={"Go back"} onPress={this.props.goBack}/>
@@ -34,7 +32,7 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        backgroundColor: "#0B0C10",
+        backgroundColor: "#1F2833",
         paddingTop: 50,
         paddingBottom: 50
     },
@@ -57,5 +55,11 @@ const styles = {
 
     scrollView: {
 
+    },
+
+    darkText: {
+        color: "#C5C6C7",
+        fontSize: 20,
+        margin: 5
     }
 };

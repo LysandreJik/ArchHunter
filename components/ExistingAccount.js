@@ -38,7 +38,7 @@ export default class ExistingAccount extends React.Component{
                 )
             }else{
                 return(
-                    <View>{this.data.map(function(item, key){return <Button key={key} title={item.username} onPress={() => parent.clickedOnName(item.username, item.password)}/>})}</View>
+                    <View style={{padding: 10}}>{this.data.map(function(item, key){return <Button color={styles.text.color} key={key} title={item.username} onPress={() => parent.clickedOnName(item.username, item.password)}/>})}</View>
                 )
             }
         }else{
@@ -72,5 +72,11 @@ const styles = {
         color: "#66FCF1",
         fontSize: 20,
         margin: 5
+    },
+
+    darkText: {
+        color: "#45A29E",
+        fontSize: 20,
+        margin: 5
     }
-}
+};

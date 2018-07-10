@@ -41,9 +41,8 @@ export default class Login extends React.Component{
     loginSelection(){
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>Login selection</Text>
-                <Button title={"Use existing account"} onPress={() => this.setState({current: STATES.USE_EXISTING_ACCOUNT})}/>
-                <Button title={"Register new account"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
+                <Button color={styles.text.color} title={"Use existing account"} onPress={() => this.setState({current: STATES.USE_EXISTING_ACCOUNT})}/>
+                <Button color={styles.text.color} title={"Register new account"} onPress={() => this.setState({current: STATES.REGISTER_NEW_ACCOUNT})}/>
             </View>
         );
     }
@@ -55,7 +54,7 @@ export default class Login extends React.Component{
     useExistingAccount(){
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>Select existing account</Text>
+                <Text style={styles.darkText}>SELECT EXISTING ACCOUNT</Text>
                 <ExistingAccount selectZone={this.selectZone}/>
                 <Button color={styles.text.color} title={"Go back"} onPress={() => this.setState({current: STATES.LOGIN_SELECTION})}/>
             </View>
@@ -65,7 +64,7 @@ export default class Login extends React.Component{
     registerNewAccount(){
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>Register a new account</Text>
+                <Text style={styles.darkText}>REGISTER A NEW ACCOUNT</Text>
                 <TextInput
                     style={styles.textInput}
                     onChangeText={(text) => this.setState({username: text})}
@@ -90,7 +89,7 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        backgroundColor: "#0B0C10"
+        backgroundColor: "#1F2833"
     },
 
     textInput: {
@@ -100,12 +99,19 @@ const styles = {
         backgroundColor: "#1F2833",
         height: 40,
         margin: 5,
-        padding: 5
+        padding: 5,
+        color: "#66FCF1"
     },
 
     text: {
         color: "#66FCF1",
         fontSize: 20,
         margin: 5
+    },
+
+    darkText: {
+        color: "#C5C6C7",
+        fontSize: 20,
+        margin: 5
     }
-}
+};
